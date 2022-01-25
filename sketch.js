@@ -1,53 +1,40 @@
-
 function setup() {
-	createCanvas(window.innerWidth, window.innerHeight);
-	textAlign(CENTER,CENTER);
-	//pixelDensity(1);
-	frameRate(60);
-	textFont("Source Code Pro,Consolas, monospace");
-	background(0); 
-  }
-  function draw() {
-	translate(width/2,height/2);
-	strokeCap(SQUARE);
-	var d = new Date(); 
-	var milli = d.getMilliseconds();
-	var p_milli = milli/1000 + .001;
-	var s = d.getSeconds() + p_milli;
-	var p_s = s/60 + .001;
-	var m = d.getMinutes() + p_s;
-	var p_m = m/60 + .001;
-	var h = d.getHours() + p_m;
-	var p_h = h%12/12 + .001;
-	
-	background(0);  
-	noStroke();
-	fill(21);
-	ellipse(0,0,170,170);  
-	// text
-	fill(196);
-	textStyle(BOLD);
-	text(("00"+parseInt(h)).substr(-2) + ":" + ("00"+parseInt(m)).substr(-2) + ":" + ("00"+parseInt(s)).substr(-2),0,0);
-	
-	
-	// circles
+  createCanvas(windowWidth, windowHeight);
+  background(0);
   
-	
-	rotate(-PI/2);
-	noFill();
-	strokeWeight(8);
-	stroke(180,60,160);
-	arc(0, 0, 100, 100, 0, p_h*2*PI);
-	
-	stroke(180,160,250);
-	strokeWeight(6);
-	arc(0, 0, 122, 122, 0, p_m*2*PI);
-	
-	stroke(60,160,180);
-	strokeWeight(4);
-	arc(0, 0, 140, 140, 0, p_s*2*PI);
-	
-	stroke(80,120,200);
-	strokeWeight(2);
-	arc(0, 0, 153, 153, 0, p_milli*2*PI);
+} 
+
+function draw() {
+  background(0);
+
+  strokeWeight(2);
+  stroke(255);
+  textSize(20);
+  push();
+  translate(windowWidth/2 * 0.5, windowHeight/2 * 0.4);
+  rotate(radians(hour() * 36) - PI/2);
+  text(hour() + " HOUR(s) ", 10, -10);
+  line(0, 0, 150, 0);
+  pop();
+
+  push();
+  translate(windowWidth/2, windowHeight/2 * 0.8);
+  rotate(radians(minute() * 6) - PI/2);
+  text(minute() + " MINUTE(s) ", 10, -10);
+  line(0, 0, 150, 0);
+  pop();
+  
+  push();
+  translate(windowWidth/2 * 1.5, windowHeight/2 * 1.55);
+  rotate(radians(second() * 6) - PI/2);
+  text(second() + " SECOND(s) ", 10, -10);
+  line(0, 0, 150, 0);
+  pop();
+  
+  stroke(255, 0, 0);
+  strokeWeight(5);
+  point(windowWidth/2 * 0.5, windowHeight/2 * 0.4);
+  point(windowWidth/2, windowHeight/2 * 0.8);
+  point(windowWidth/2 * 1.5, windowHeight/2 * 1.55);
+
 }
